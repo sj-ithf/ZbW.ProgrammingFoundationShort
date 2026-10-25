@@ -76,6 +76,6 @@ public static class Taschenrechner
       return;
     }
     // TODO 5: Ergebnis ausgeben: $"Ergebnis: {result:F2}"
-    Console.WriteLine($"Dein Ergebnis ist: {result}");
+    Console.WriteLine($"Dein Ergebnis ist: {result:F2}");
   }
 }

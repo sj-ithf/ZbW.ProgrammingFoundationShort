@@ -18,6 +18,7 @@ public partial class TemperaturrechnerForm : Form
 {
   // TODO 1: Konstante für den absoluten Nullpunkt definieren
   //         private const double AbsoluteZero = -273.15;
+  const double AbsolutZero = -273.15;
 
   public TemperaturrechnerForm()
   {
@@ -29,13 +30,23 @@ public partial class TemperaturrechnerForm : Form
   {
     // TODO 2: Wert aus TxtCelsius lesen (double.TryParse)
     //         Bei ungültiger Eingabe: MessageBox anzeigen und return
+    if (!int.TryParse(TxtCelsius.Text, out int NumberCelsius))
+    {
+      MessageBox.Show("Wrong Value");
+    }
 
     // TODO 3: Prüfen ob Wert < AbsoluteZero
     //         → MessageBox mit Warnung, aber weiter rechnen
+    if (NumberCelsius <= AbsolutZero)
+    {
+      MessageBox.Show("Der Wert liegt unter dem absolutem Nulpunkt");
+    }
 
     // TODO 4: Formel anwenden: fahrenheit = celsius * 9.0 / 5.0 + 32
+    double NumberFahrenheit = (NumberCelsius * 1.8) + 32;
 
     // TODO 5: Ergebnis in TxtFahrenheit anzeigen ($"{fahrenheit:F2}")
+    TxtFahrenheit.Text = ($"{NumberFahrenheit:F2}");
   }
 
   // ── Fahrenheit → Celsius ────────────────────────────────────
@@ -43,11 +54,18 @@ public partial class TemperaturrechnerForm : Form
   {
     // TODO 6: Wert aus TxtFahrenheit lesen (double.TryParse)
     //         Bei ungültiger Eingabe: MessageBox anzeigen und return
-
+    if (!int.TryParse(TxtFahrenheit.Text, out int NumberFahrenheit))
+    {
+      MessageBox.Show("Wrong Value");
+    }
     // TODO 7: Formel anwenden: celsius = (fahrenheit - 32) * 5.0 / 9.0
-
+    double NumberCelsius = (NumberFahrenheit - 32) / 1.8;
     // TODO 8: Prüfen ob Ergebnis < AbsoluteZero → Warnung
-
+    if (NumberCelsius <= AbsolutZero)
+    {
+      MessageBox.Show("Der Wert liegt unter dem absolutem Nulpunkt");
+    }
     // TODO 9: Ergebnis in TxtCelsius anzeigen ($"{celsius:F2}")
+    TxtCelsius.Text = ($"{NumberCelsius:F2}");
   }
 }
